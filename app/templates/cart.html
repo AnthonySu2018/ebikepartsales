@@ -1,7 +1,7 @@
 <!-- cart.html (mshop project) -->
 {% extends "base.html" %}
 {% load cart_tag %}
-{% block title %}檢視購物車{% endblock %}
+{% block title %}View Carts{% endblock %}
 {% block content %}
 <div class='container'>
 {% for message in messages %}
@@ -11,7 +11,7 @@
         <div class='col-md-12'>
             <div class='panel panel-default'>
                 <div class='panel-heading' align=center>
-                    <h3>歡迎光臨迷你小電商</h3>
+                    <h3>Welcome to EbikePartSales</h3>
                         {% if user.socialaccount_set.all.0.extra_data.name %}
                             {{user.socialaccount_set.all.0.extra_data.name}}<br/>
                             <img src='{{user.socialaccount_set.all.0.get_avatar_url}}' width='100'>
@@ -26,18 +26,18 @@
         <div class='col-sm-12'>
             <div class='panel panel-info'>
                 <div class='panel panel-heading'>
-                    <h4>我的購物車</h4>
+                    <h4>My Cart</h4>
                 </div>
                 <div class='panel panel-body'>
                     {% for id, item in cart.items %}
                     {% if forloop.first %}
                     <table border=1>
                         <tr>
-                            <td width=300 align=center>產品名稱</td>
-                            <td width=100 align=center>單價</td>
-                            <td width=100 align=center>數量</td>
-                            <td width=100 align=center>小計</td>
-                            <td width=100 align=center>刪除</td>
+                            <td width=300 align=center>Product Name</td>
+                            <td width=100 align=center>Unit Price</td>
+                            <td width=100 align=center>Quantity</td>
+                            <td width=100 align=center>Subtotal</td>
+                            <td width=100 align=center>Delete</td>
                         </tr>
                     {% endif %}
                         <div class='listgroup'>
@@ -55,14 +55,14 @@
                         </div>
                     {% if forloop.last %}
                     </table>
-                    <button class='btn btn-warning'><a href='/order'>我要訂購</a></button>
+                    <button class='btn btn-warning'><a href='/order'>I want to buy</a></button>
                     {% endif %}
                     {% empty %}
-                        <em>購物車是空的</em>
+                        <em>the cart is empty</em>
                     {% endfor %}
                 </div>
                 <div class='panel panel-footer'>
-                    總計： {{ total_price }}元
+                    total {{ total_price }} Yuan
                 </div>
             </div>
         </div>

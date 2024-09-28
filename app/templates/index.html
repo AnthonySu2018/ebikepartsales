@@ -1,6 +1,6 @@
 <!-- index.html (mshop project) -->
 {% extends "base.html" %}
-{% block title %}苏琼亮个人网站{% endblock %}
+{% block title %}EbikePartSales{% endblock %}
 {% block content %}
 {% load mvote_extras %}
 <div class='container'>
@@ -12,7 +12,7 @@
         <div class='col-md-12'>
             <div class='panel panel-default'>
                 <div class='panel-heading' align=center>
-                    <h3>苏琼亮个人网站<br>【{{category.name | default:"全部產品"}}】</h3>
+                    <h3>ebikepartsales<br>【{{category.name | default:"All Products"}}】</h3>
                     {% if user.is_authenticated %}
                         {% if user.socialaccount_set.all.0.extra_data.name %}
                             {{user.socialaccount_set.all.0.extra_data.name}}<br/>
@@ -28,16 +28,16 @@
     </div>
     <div class='row'>
             <button class='btn btn-info'>
-                目前是第{{ products.number }}頁</a>
+                Now is Page {{ products.number }}</a>
             </button>
         {% if products.has_previous %}
             <button class='btn btn-info'>
-                <a href='?p={{ products.previous_page_number }}'>上一頁</a>
+                <a href='?p={{ products.previous_page_number }}'>Next Page</a>
             </button>
         {% endif %}
         {% if products.has_next %}
             <button class='btn btn-info'>
-                <a href='?p={{ products.next_page_number }}'>下一頁</a>
+                <a href='?p={{ products.next_page_number }}'>Last Page</a>
             </button>
         {% endif %}
     </div>
@@ -50,12 +50,12 @@
                 <div class='caption'>
                     <h4><a href='{% url "product-url" product.id %}'>{{ product.name }}</a></h4>
                     <p>NT$ {{product.price }}</p>
-                    <p>庫存：{{product.stock}}</p>
+                    <p>Inventory：{{product.stock}}</p>
                     <p>{{ product.description }}</p>
 
                     {% if user.is_authenticated %}
                         <button class='btn btn-info' {{ product.stock | yesno:",disabled"}}>
-                            <a href='{% url "additem-url" product.id 1 %}'>放入購物車</a>
+                            <a href='{% url "additem-url" product.id 1 %}'>Put into Cart</a>
                         </button>
                     {% endif %}
                 </div>    
@@ -66,15 +66,15 @@
     {% empty %}
         <div class='row'>
             <div class='col-sm-12' align='center'>
-                <h3>此分類目前沒有任何商品</h3>
+                <h3>This category have not product</h3>
             </div>
         </div>
     {% endfor %}
 </div>
 
     {% if cart.items|length > 0 %}
-        <em>目前購物車中共有 {{ cart.items|length }} 項產品</em>
+        <em>Now the cart has {{ cart.items|length }} items</em>
     {% else %}
-        <p>此購物車為空</p>
+        <p>The cart is empty</p>
     {% endif %}
 {% endblock %}

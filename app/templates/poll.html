@@ -1,7 +1,7 @@
 <!-- poll.html (project project) -->
 
 {% extends "base.html" %}
-{% block title %}投票趣{% endblock %}
+{% block title %}Voting fun{% endblock %}
 {% block content %}
     <script>
         $(document).ready(function() {
@@ -16,7 +16,7 @@
                     },
                     success: function(votes) {
                         if (votes==0) {
-                            alert("無法投票");
+                            alert("Unable to vote");
                         } else {
                             $("#pollitem-id-{{pollitem.id}}").html(votes);
                         }
@@ -63,7 +63,7 @@
                             </span>
                         </a>
                         &nbsp;
-                        目前票數：<span id='pollitem-id-{{pollitem.id}}'>{{ pollitem.vote }}</span></h4>
+                        Current votes:<span id='pollitem-id-{{pollitem.id}}'>{{ pollitem.vote }}</span></h4>
                         <button class='btn btn-primary' id='govote-{{pollitem.id}}' data-itemid='{{pollitem.id}}'>投這個一票</button>
                     </div>
                 </div>

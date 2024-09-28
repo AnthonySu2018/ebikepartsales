@@ -1,6 +1,6 @@
 <!-- payment.html (mshop project) -->
 {% extends "base.html" %}
-{% block title %}選擇您的付款方式{% endblock %}
+{% block title %}Choose your payment method{% endblock %}
 {% block content %}
 <div class='container'>
 {% for message in messages %}
@@ -10,7 +10,7 @@
         <div class='col-md-12'>
             <div class='panel panel-default'>
                 <div class='panel-heading' align=center>
-                    <h3>歡迎光臨迷你小電商</h3>
+                    <h3>Welcome to EbikePartSales</h3>
                         {% if user.socialaccount_set.all.0.extra_data.name %}
                             {{user.socialaccount_set.all.0.extra_data.name}}<br/>
                             <img src='{{user.socialaccount_set.all.0.get_avatar_url}}' width='100'>
@@ -25,17 +25,17 @@
         <div class='col-sm-12'>
             <div class='panel panel-info'>
                 <div class='panel panel-heading'>
-                    <h4>線上付款（訂單編號：{{order.id}}）</h4>
+                    <h4>Online payment（order number：{{order.id}}）</h4>
                 </div>
                 <div class='panel panel-body'>
                     {% for item in items %}
                     {% if forloop.first %}
                     <table border=1>
                         <tr>
-                            <td width=300 align=center>產品名稱</td>
-                            <td width=100 align=center>單價</td>
-                            <td width=100 align=center>數量</td>
-                            <td width=100 align=center>小計</td>
+                            <td width=300 align=center>Product Name</td>
+                            <td width=100 align=center>Price</td>
+                            <td width=100 align=center>Quantity</td>
+                            <td width=100 align=center>Subtotal</td>
                         </tr>
                     {% endif %}
                         <div class='listgroup'>
@@ -52,13 +52,13 @@
                     </table>
                     {% endif %}
                     {% empty %}
-                        <em>此訂單是空的</em>
+                        <em>This order is empty</em>
                     {% endfor %}
                     
                     {{ paypal_form.render }}
                 </div>
                 <div class='panel panel-footer'>
-                    NT$:{{ total }}元
+                    NT$:{{ total }} Yuan
                 </div>
             </div>
         </div>

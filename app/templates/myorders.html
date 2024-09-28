@@ -1,7 +1,7 @@
 <!-- myorders.html (mshop project) -->
 {% extends "base.html" %}
 {% load cart_tag %}
-{% block title %}我的訂單{% endblock %}
+{% block title %}My Order{% endblock %}
 {% block content %}
 <div class='container'>
 {% for message in messages %}
@@ -11,7 +11,7 @@
         <div class='col-md-12'>
             <div class='panel panel-default'>
                 <div class='panel-heading' align=center>
-                    <h3>歡迎光臨迷你小電商</h3>
+                    <h3>Welcome to EbikePartSales</h3>
                         {% if user.socialaccount_set.all.0.extra_data.name %}
                             {{user.socialaccount_set.all.0.extra_data.name}}<br/>
                             <img src='{{user.socialaccount_set.all.0.get_avatar_url}}' width='100'>
@@ -26,19 +26,19 @@
         <div class='col-sm-12'>
             <div class='panel panel-info'>
                 <div class='panel panel-heading'>
-                    <h4>我的訂單</h4>
+                    <h4>My Order</h4>
                 </div>
                 <div class='panel panel-body'>
                     {% for order in orders %}
                     {% if forloop.first %}
                     <table border=1>
                         <tr>
-                            <td width=100 align=center>訂單編號</td>
-                            <td width=100 align=center>姓名</td>
-                            <td width=300 align=center>地址</td>
-                            <td width=200 align=center>訂購時間</td>
-                            <td width=100 align=center>是否付款</td>
-                            <td width=100 align=center>線上付款</td>
+                            <td width=100 align=center>Order Number</td>
+                            <td width=100 align=center>Name</td>
+                            <td width=300 align=center>Address</td>
+                            <td width=200 align=center>Order Time</td>
+                            <td width=100 align=center>Paid or not</td>
+                            <td width=100 align=center>Pay online</td>
                         </tr>
                     {% endif %}
                         <div class='listgroup'>
@@ -48,11 +48,11 @@
                                     <td align=center>{{ order.full_name }}</td>
                                     <td>{{ order.address }}</td>
                                     <td align=center>{{ order.created_at }}</td>
-                                    <td align=center>{{ order.paid | yesno:"是,否"}}</td>
+                                    <td align=center>{{ order.paid | yesno:"yes,no"}}</td>
                                     <td align=center>
                                         {% if not order.paid %}
                                         <button class='btn btn-warning'>
-                                            <a href='/payment/{{order.id}}/'>前往付款</a>
+                                            <a href='/payment/{{order.id}}/'>go to pay</a>
                                         </button>
                                         {% endif %}
                                     </td>
@@ -63,7 +63,7 @@
                     </table>
                     {% endif %}
                     {% empty %}
-                        <em>沒有處理中的訂單</em>
+                        <em>no processing orders</em>
                     {% endfor %}
                 </div>
                 <div class='panel panel-footer'>
